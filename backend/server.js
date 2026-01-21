@@ -27,6 +27,5 @@ mongoose
   .then(() => console.log("MongoDB connected ✅"))
   .catch(err => console.error(err));
 
-app.listen(3000, () => {
-  console.log("Server running on http://192.168.1.9:3000");
-});
+export default app;
+
