@@ -1,0 +1,32 @@
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
+import authRoutes from "./routes/auth.routes.js";
+import roleRoutes from "./routes/role.route.js";
+import userRoutes from "./routes/users/user.routes.js";
+import driverStatus from "./routes/driver/status.js"
+import passengerRoute from "./routes/passenger.js"
+
+
+dotenv.config();
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/auth", roleRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/driver", driverStatus);
+app.use("/api/passenger",passengerRoute)
+
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected ✅"))
+  .catch(err => console.error(err));
+
+app.listen(3000, () => {
+  console.log("Server running on http://192.168.1.9:3000");
+});
